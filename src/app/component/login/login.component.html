@@ -10,16 +10,21 @@
 
       <mat-tab-group>
         <mat-tab label="Login">
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Email:</mat-label>
-            <input type="email" matInput placeholder="email">
-          </mat-form-field>
+          <!-- <p *ngIf="notification" [class]="notification.msgType">{{notification.msgBody}}</p> -->
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit()" *ngIf="!submitted" [formGroup]="form">
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Username:</mat-label>
+              <input formControlName="username" matInput placeholder="username" required>
+            </mat-form-field>
 
-          <mat-form-field class="example-full-width" appearance="fill">
-            <mat-label>Password:</mat-label>
-            <input type="password" matInput placeholder="password">
-          </mat-form-field>
-          <button mat-raised-button color="primary">Login</button>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Password:</mat-label>
+              <input formControlName="password" type="password" matInput required placeholder="password">
+            </mat-form-field>
+            <!-- <button mat-raised-button color="primary">Login</button> -->
+            <button [disabled]="!loginForm.form.valid" color="primary" mat-raised-button
+                    type="submit">Login</button>
+        </form>
         </mat-tab>
 
         <mat-tab label="Register">

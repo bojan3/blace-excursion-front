@@ -4,6 +4,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -11,6 +12,7 @@ const MaterialComponents = [
   MatTabsModule,
   MatInputModule,
   MatIconModule,
+  MatToolbarModule,
 ]
 
 @NgModule({
@@ -20,6 +22,7 @@ const MaterialComponents = [
     MatTabsModule,
     MatInputModule,
     MatIconModule,
+    MatToolbarModule,
   ],
   exports: [
     MatButtonModule,
@@ -27,6 +30,7 @@ const MaterialComponents = [
     MatTabsModule,
     MatInputModule,
     MatIconModule,
+    MatToolbarModule,
   ]
 })
 export class MaterialModule { }

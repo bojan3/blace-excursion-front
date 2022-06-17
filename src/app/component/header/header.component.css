@@ -1,0 +1,8 @@
+.spacer {
+  margin-left: auto;
+  float: right;
+}
+
+.hover-cursor:hover{
+  cursor: pointer;
+}
