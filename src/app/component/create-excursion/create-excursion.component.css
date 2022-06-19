@@ -1,0 +1,22 @@
+.card {
+  max-width: 800;
+  margin-bottom: 8px;
+  margin-top: 20px;
+  margin: auto;
+  width: 50%;
+}
+
+button {
+  margin-right: 2%;
+}
+
+.inline-calendar-card {
+  width: 300px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.margin{
+  margin-top: 5%;
+  margin-bottom: 5%;
+}

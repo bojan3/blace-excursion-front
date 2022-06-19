@@ -1,9 +1,23 @@
-<p>
   <mat-toolbar color="primary">
     <h2 class="hover-cursor" [routerLink]="['']" >BLACE</h2>
+    <div *ngIf="isUserClient()">
+      <button mat-button [routerLink]="['']" > Excursions </button>
+      <button mat-button [routerLink]="['reservations']" > Reservations </button>
+      <button mat-button [routerLink]="['pastExcursions']" > History </button>
+    </div>
+    <div *ngIf="isUserTourGuide()">
+      <button mat-button [routerLink]="['createExcursion']" > Create Excursion </button>
+      <!-- <button mat-button [routerLink]="['reservations']" > Reservations </button>
+      <button mat-button [routerLink]="['pastExcursions']" > History </button> -->
+    </div>
+    <div *ngIf="isUserAdmin()">
+      <button mat-button [routerLink]="['']" > Excursions </button>
+      <button mat-button [routerLink]="['reservations']" > Reservations </button>
+      <button mat-button [routerLink]="['pastExcursions']" > History </button>
+    </div>
     <span class="example-spacer"></span>
     <div class="spacer">
-      <button [routerLink]="['login']" mat-raised-button> Login/Register </button>
+      <button [routerLink]="['login']" *ngIf=!isUserLogged() mat-raised-button> Login/Register </button>
+      <button (click)="logout()" *ngIf=isUserLogged() mat-raised-button> Logout </button>
     </div>
   </mat-toolbar>
-</p>

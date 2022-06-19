@@ -1,42 +1,43 @@
-import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
-import { ApiService } from './api.service';
-import { UserService } from './user.service';
-import { ConfigService } from './config.service';
-import { catchError, map } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { of } from 'rxjs/internal/observable/of';
 import { Observable } from 'rxjs';
-import { throwError } from "rxjs";
+import { map } from 'rxjs/operators';
+import { ApiService } from './api.service';
+import { HttpClient } from '@angular/common/http';
+import { UserService } from './user.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
+
+  private tokenName: string = "jwt";
 
   constructor(
     private apiService: ApiService,
+    // private accountService: AccountService,
+    //private config: ConfigService,
     private userService: UserService,
-    private config: ConfigService,
-    private router: Router
-  ) {
-  }
-
-  private access_token = null;
+    private router: Router,
+    private http: HttpClient
+  ) { }
 
   login(user: any) {
     const loginHeaders = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     });
-    // const body = `username=${user.username}&password=${user.password}`;
     const body = {
       'username': user.username,
       'password': user.password
     };
-    return this.apiService.post(this.config.login_url, JSON.stringify(body), loginHeaders)
+    console.log(body);
+
+    return this.apiService.post("http://localhost:9080/auth/login", JSON.stringify(body), loginHeaders)
       .pipe(map((res) => {
         console.log('Login success');
-        this.access_token = res.accessToken;
-        localStorage.setItem("jwt", res.accessToken)
+        localStorage.setItem(this.tokenName, res.body.accessToken);
       }));
   }
 
@@ -45,7 +46,10 @@ export class AuthService {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     });
-    return this.apiService.post(this.config.signup_url, JSON.stringify(user), signupHeaders)
+
+    console.log('User pre slanja: ', JSON.stringify(user));
+
+    return this.apiService.post("http://localhost:9080/auth/signup", JSON.stringify(user), signupHeaders)
       .pipe(map(() => {
         console.log('Sign up success');
       }));
@@ -53,16 +57,16 @@ export class AuthService {
 
   logout() {
     this.userService.currentUser = null;
-    this.access_token = null;
+    localStorage.removeItem(this.tokenName);
     this.router.navigate(['/login']);
   }
 
   tokenIsPresent() {
-    return this.access_token != undefined && this.access_token != null;
+    var token = localStorage.getItem(this.tokenName);
+    return token != undefined && token != null;
   }
 
   getToken() {
-    return this.access_token;
+    return localStorage.getItem(this.tokenName)
   }
-
 }
