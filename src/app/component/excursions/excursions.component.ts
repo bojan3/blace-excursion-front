@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ExcursionDTO } from 'src/app/entity/ExcursionDTO';
 import { ExcursionService } from 'src/app/service/excursion.service';
 
@@ -9,6 +9,8 @@ import { ExcursionService } from 'src/app/service/excursion.service';
 })
 export class ExcursionsComponent implements OnInit {
 
+  @Input()
+  forTourGuide: boolean = false;
   excursions: ExcursionDTO[] = [];
 
   constructor(
@@ -16,9 +18,16 @@ export class ExcursionsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (this.forTourGuide){
+      this.excursionService.getExcursionsTourGuide().subscribe((excursions) => (
+        this.excursions = excursions ))
+      }
+    else{
     this.excursionService.getExcursions().subscribe((excursions) => {
       this.excursions = excursions;
       console.log(excursions);
-    });
+    }
+      );
+  }
   }
 }

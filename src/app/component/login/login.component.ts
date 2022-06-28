@@ -16,7 +16,8 @@ interface DisplayMessage {
 })
 export class LoginComponent implements OnInit {
   title = 'Login';
-  form!: FormGroup;
+  formLogin!: FormGroup;
+  formRegister!: FormGroup;
 
   /**
    * Boolean used in telling the UI
@@ -50,19 +51,24 @@ export class LoginComponent implements OnInit {
     // });
   // get return url from route parameters or default to '/'
   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-  this.form = this.formBuilder.group({
+  this.formLogin = this.formBuilder.group({
     username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
     password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])]
   });
+  this.formRegister = this.formBuilder.group({
+    username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
+    firstName: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
+    lastName: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
+    email: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
+    phoneNumber: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
+    password: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])],
+    passwordRetype: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(32)])]
+  });
   }
-  onSubmit() {
-    /**
-     * Innocent until proven guilty
-     */
-    // this.notification = undefined;
+  login() {
     this.submitted = true;
 
-    this.authService.login(this.form.value)
+    this.authService.login(this.formLogin.value)
       .subscribe(data => {
           this.userService.getMyInfo().subscribe((user) => (
             console.log(user)
@@ -73,5 +79,18 @@ export class LoginComponent implements OnInit {
           this.submitted = false;
           this.notification = {msgType: 'error', msgBody: 'Incorrect username or password.'};
         });
+  }
+
+  register(){
+    this.submitted = true;
+
+    this.authService.signup(this.formRegister.value)
+      .subscribe(data => {
+          this.router.navigate([this.returnUrl]);
+        })
+  }
+
+  arePasswordsMatching(){
+    return (this.formRegister.value.password != this.formRegister.value.passwordRetype);
   }
 }

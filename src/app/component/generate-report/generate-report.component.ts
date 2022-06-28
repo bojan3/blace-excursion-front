@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { PastExcursionDTO } from 'src/app/entity/PastExcursionDTO';
 import { ExcursionService } from 'src/app/service/excursion.service';
 import * as pdfMake from "pdfmake/build/pdfmake";
-// import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import * as pdfFonts from 'pdfmake/build/vfs_fonts';
+import { BoundDirectivePropertyAst, TmplAstTemplate } from '@angular/compiler';
+(pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-generate-report',
@@ -25,33 +27,27 @@ export class GenerateReportComponent implements OnInit {
   }
 
   generatePDF() {
-    var counter = 0;
-    var content: { table: { headerRows: number; widths: string[]; body: (number[] | (string | { text: string; colSpan: number; })[])[]; }; }[] = [];
+    var total = 0;
+
+    var content: { table: { headerRows: number; widths: string[]; body: ((string | number | Date)[] | (string | { text: string; colSpan: number; })[])[]; }; }[] = [];
+    var body = [];
+
+    body.push(['Location', 'Date', 'Price per person', 'Number of persons', 'Total per excursion']);
 
     for (let pastExcursion of this.pastExcursions) {
-      // this.restaurantService.getStatsByRestName(restaurant.name).subscribe((stats) => {
-        var body = [];
+        body.push([pastExcursion.excursionDTO.locationDTO.name, pastExcursion.excursionDTO.date, pastExcursion.excursionDTO.price, pastExcursion.numberOfPersons, pastExcursion.excursionDTO.price * pastExcursion.numberOfPersons]);
+        total += pastExcursion.excursionDTO.price * pastExcursion.numberOfPersons;
+      }
 
-        body.push(['Location', 'Date', 'Price']);
-        body.push([pastExcursion.excursionDTO.locationDTO.name, pastExcursion.excursionDTO.date, pastExcursion.excursionDTO.price]);
-
-
-        let table = { headerRows: 2, widths: ['auto', 'auto', 'auto'], body: body };
+        let table = { headerRows: 2, widths: ['auto', 'auto', 'auto', 'auto', 'auto'], body: body };
         content.push({table});
 
-        counter++;
-        // if(counter == this.restaurants.length){
           let docDefinition = {
-            header: 'Извештај о броју резервација и броју људи по дану у протеклих месец дана',
+            header: 'Report: Earings for excursions ' + '(Total: ' + total + ')',
             content: content
           };
 
-          pdfMake.createPdf(docDefinition).open();
-        }
-
-      })
+          pdfMake.createPdf(docDefinition).download();
     }
-
-  }
 
 }

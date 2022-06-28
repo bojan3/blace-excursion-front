@@ -34,6 +34,10 @@ export class ExcursionService {
     }
 
     getTourGuidePastExcursions(): Observable<PastExcursionDTO[]>{
-      return this.apiService.get('http://localhost:9080/api/tourguide');
+      return this.apiService.get('http://localhost:9080/api/tourguide/pastExcursions');
+    }
+
+    getExcursionsTourGuide(): Observable<ExcursionDTO[]>{
+      return this.apiService.get('http://localhost:9080/api/tourguide/excursions');
     }
 }

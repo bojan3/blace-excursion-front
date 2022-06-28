@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  isUserLogged() {
+  isUserLogged() {  
     return !!this.userService.currentUser;
   }
 
@@ -25,20 +25,15 @@ export class HeaderComponent implements OnInit {
   }
 
   isUserClient(): boolean{
-    if (localStorage.getItem('role') == 'ROLE_CLIENT')
-      return true;
-    return false;
+    return (!!this.userService.currentUser) && this.userService.getUserRole() == 'ROLE_CLIENT';
   }
 
   isUserTourGuide(): boolean{
-    if (localStorage.getItem('role') == 'ROLE_TOURGUIDE')
-      return true;
-    return false;
+    return (!!this.userService.currentUser) && this.userService.getUserRole() == 'ROLE_TOURGUIDE';
   }
 
   isUserAdmin(): boolean{
-    if (localStorage.getItem('role') == 'ROLE_ADMIN')
-      return true;
-    return false;
+    return (!!this.userService.currentUser) && this.userService.getUserRole() == 'ROLE_ADMIN';
   }
+
 }

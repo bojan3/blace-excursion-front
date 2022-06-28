@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ReservationDTO } from 'src/app/entity/ReservationDTO';
 import { ClientService } from 'src/app/service/client.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-reservation',
@@ -13,13 +14,17 @@ export class ReservationComponent implements OnInit {
   reservation!: ReservationDTO;
 
   constructor(
-    private clientService: ClientService
+    private router: Router,
+    private clientService: ClientService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     console.log(this.reservation)
   }
   cancelReservation(){
-    this.clientService.cancelReservation(this.reservation.id).subscribe();
+    this.clientService.cancelReservation(this.reservation.id).subscribe(() =>
+    (window.location.reload())
+    );
   }
 }

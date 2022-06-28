@@ -28,4 +28,9 @@ export class UserService {
       }));
   }
 
+  getUserRole(): string {
+    this.getMyInfo()
+    return this.currentUser.roles[0];
+  }
+
 }

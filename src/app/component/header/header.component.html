@@ -7,8 +7,8 @@
     </div>
     <div *ngIf="isUserTourGuide()">
       <button mat-button [routerLink]="['createExcursion']" > Create Excursion </button>
-      <!-- <button mat-button [routerLink]="['reservations']" > Reservations </button>
-      <button mat-button [routerLink]="['pastExcursions']" > History </button> -->
+      <button mat-button [routerLink]="['generateReport']" > Generate Report </button>
+      <button mat-button [routerLink]="['tuorguid-excursions']" > Excursions </button>>
     </div>
     <div *ngIf="isUserAdmin()">
       <button mat-button [routerLink]="['']" > Excursions </button>

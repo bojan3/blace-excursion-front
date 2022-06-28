@@ -7,8 +7,7 @@
   </mat-card-title-group>
   <mat-card-content>
     <p> {{excursion.tourGuideName}} </p>
-    <button class="right" color="primary" mat-raised-button
-                    type="submit">Make reservation</button>
+    <button (click)="createReservation()" *ngIf="!isUserTourGuide()" class="right" color="primary" mat-raised-button >Make reservation</button>
     <button [routerLink]="['', 'comments', excursion.id]" class="right" color="accent" mat-raised-button
                     type="submit">Comments</button>
   </mat-card-content>

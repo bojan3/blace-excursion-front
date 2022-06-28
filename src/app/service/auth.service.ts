@@ -47,8 +47,6 @@ export class AuthService {
       'Content-Type': 'application/json'
     });
 
-    console.log('User pre slanja: ', JSON.stringify(user));
-
     return this.apiService.post("http://localhost:9080/auth/signup", JSON.stringify(user), signupHeaders)
       .pipe(map(() => {
         console.log('Sign up success');
