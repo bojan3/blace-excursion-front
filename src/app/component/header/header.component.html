@@ -6,9 +6,9 @@
       <button mat-button [routerLink]="['pastExcursions']" > History </button>
     </div>
     <div *ngIf="isUserTourGuide()">
-      <button mat-button [routerLink]="['createExcursion']" > Create Excursion </button>
-      <button mat-button [routerLink]="['generateReport']" > Generate Report </button>
-      <button mat-button [routerLink]="['tuorguid-excursions']" > Excursions </button>>
+      <button mat-button [routerLink]="['tuorguid-excursions']" > Excursions </button>
+      <button mat-button [routerLink]="['createExcursion']" > Organise excursion </button>
+      <button mat-button [routerLink]="['generateReport']" > Report </button>
     </div>
     <div *ngIf="isUserAdmin()">
       <button mat-button [routerLink]="['']" > Excursions </button>

@@ -4,6 +4,7 @@ import { ExcursionService } from 'src/app/service/excursion.service';
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { BoundDirectivePropertyAst, TmplAstTemplate } from '@angular/compiler';
+import { TourguideService } from 'src/app/service/tourguide.service';
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
@@ -16,11 +17,12 @@ export class GenerateReportComponent implements OnInit {
 
   pastExcursions: PastExcursionDTO[] = [];
   constructor(
-    private excursionService: ExcursionService
+    private excursionService: ExcursionService,
+    private tourguideService: TourguideService
   ) { }
 
   ngOnInit(): void {
-    this.excursionService.getTourGuidePastExcursions().subscribe((pastExcursions) => {
+    this.tourguideService.getTourGuidePastExcursions().subscribe((pastExcursions) => {
       this.pastExcursions = pastExcursions;
       this.generatePDF();
     })

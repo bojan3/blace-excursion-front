@@ -18,22 +18,11 @@ export class LoginComponent implements OnInit {
   title = 'Login';
   formLogin!: FormGroup;
   formRegister!: FormGroup;
-
-  /**
-   * Boolean used in telling the UI
-   * that the form has been submitted
-   * and is awaiting a response
-   */
   submitted = false;
+  notification!: DisplayMessage;
 
-   /**
-   * Notification message from received
-   * form request or router
-   */
-    notification!: DisplayMessage;
-
-    returnUrl!: string;
-    private ngUnsubscribe: Subject<void> = new Subject<void>();
+  returnUrl!: string;
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
 
   constructor(
     private userService: UserService,
@@ -44,12 +33,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params
-    // .pipe(takeUntil(this.ngUnsubscribe))
-    // .subscribe((params: DisplayMessage) => {
-    //   this.notification = params;
-    // });
-  // get return url from route parameters or default to '/'
+  this.route.params
   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   this.formLogin = this.formBuilder.group({
     username: ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(64)])],
@@ -70,10 +54,13 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.formLogin.value)
       .subscribe(data => {
-          this.userService.getMyInfo().subscribe((user) => (
-            console.log(user)
-          ));
-          this.router.navigate([this.returnUrl]);
+          this.userService.getMyInfo().subscribe((user) => {
+            if(user.roles[0] == 'ROLE_TOURGUIDE'){
+              this.router.navigate(['tuorguid-excursions']);
+            }else{
+              this.router.navigate([this.returnUrl]);
+            }
+          });
         },
         error => {
           this.submitted = false;
@@ -86,7 +73,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.signup(this.formRegister.value)
       .subscribe(data => {
-          this.router.navigate([this.returnUrl]);
+            this.router.navigate([this.returnUrl]);
         })
   }
 

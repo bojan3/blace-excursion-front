@@ -1,4 +1,6 @@
 <mat-card class="card">
+
+  <mat-card class="small-card">
   <p>Location: </p>
   <mat-divider></mat-divider>
   <mat-selection-list [(ngModel)]="selectedLocation" [multiple]="false">
@@ -6,16 +8,16 @@
       {{location.name}}
     </mat-list-option>
   </mat-selection-list>
+</mat-card>
   <mat-divider></mat-divider>
-  <!-- <p>
-    Option selected: {{loc.selectedOptions.selected[0]?.value.name}}
-  </p> -->
-
   <mat-card class="inline-calendar-card">
+    <p>Date: </p>
+    <mat-divider></mat-divider>
     <mat-calendar [(selected)]="date"></mat-calendar>
   </mat-card>
-  <!-- <p>Selected date: {{selected}}</p> -->
   <mat-divider></mat-divider>
+
+  <mat-card class="small-card">
   <mat-form-field class="example-full-width" appearance="fill">
     <mat-label class="margin" >Numbe of persons:</mat-label>
     <input  [(ngModel)]="numOfPersons" matInput >
@@ -25,6 +27,8 @@
   <mat-label class="margin" >Price:</mat-label>
     <input  [(ngModel)]="price" matInput >
   </mat-form-field>
+</mat-card>
+
   <mat-divider></mat-divider>
   <p *ngIf="notification" id='error' [class]="notification.msgType">{{notification.msgBody}}</p>
   <button class="margin" color="primary" (click)="createExcursion()" mat-raised-button >Create excursion</button>

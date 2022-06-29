@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ExcursionDTO } from 'src/app/entity/ExcursionDTO';
 import { ExcursionService } from 'src/app/service/excursion.service';
+import { TourguideService } from 'src/app/service/tourguide.service';
 
 @Component({
   selector: 'app-excursions',
@@ -14,12 +15,13 @@ export class ExcursionsComponent implements OnInit {
   excursions: ExcursionDTO[] = [];
 
   constructor(
-    private excursionService: ExcursionService
+    private excursionService: ExcursionService,
+    private toutguideService: TourguideService
   ) { }
 
   ngOnInit(): void {
     if (this.forTourGuide){
-      this.excursionService.getExcursionsTourGuide().subscribe((excursions) => (
+      this.toutguideService.getExcursionsTourGuide().subscribe((excursions) => (
         this.excursions = excursions ))
       }
     else{

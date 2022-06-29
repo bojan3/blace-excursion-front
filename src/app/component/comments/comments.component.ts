@@ -32,4 +32,13 @@ export class CommentsComponent implements OnInit {
       this.excursionService.getComments(this.excursionId).subscribe((comments) => (this.comments = comments));
   }
 
+  noComments(): boolean{
+    if(this.comments == []){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
 }

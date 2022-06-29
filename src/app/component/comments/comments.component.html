@@ -1,5 +1,8 @@
 <section class='comments'>
-  <app-comment *ngFor="let comment of comments"
-  [comment]="comment">
-   </app-comment>
+  <div  *ngIf=!noComments()>
+    <app-comment *ngFor="let comment of comments"
+    [comment]="comment">
+    </app-comment>
+  </div>
+   <h2 *ngIf=noComments()>No comments.</h2>
 </section>

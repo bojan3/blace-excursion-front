@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ExcursionDTO } from 'src/app/entity/ExcursionDTO';
 import { UserService } from 'src/app/service';
 import { ClientService } from 'src/app/service/client.service';
+import { TourguideService } from 'src/app/service/tourguide.service';
 
 @Component({
   selector: 'app-excursion',
@@ -15,7 +16,8 @@ export class ExcursionComponent implements OnInit {
 
   constructor(
     private clientService: ClientService,
-    private userService: UserService
+    private userService: UserService,
+    private tourguideService: TourguideService
     ) { }
 
   ngOnInit(): void {
@@ -26,6 +28,15 @@ export class ExcursionComponent implements OnInit {
   }
 
   isUserTourGuide(): boolean{
-    return (!!this.userService.currentUser) && this.userService.currentUser.role == 'ROLE_CLIENT';
+    return (!!this.userService.currentUser) && this.userService.getUserRole() == 'ROLE_TOURGUIDE';
   }
+
+  isUserClient(): boolean{
+    return (!!this.userService.currentUser) && this.userService.getUserRole() == 'ROLE_CLIENT';
+  }
+
+  cancel(){
+    this.tourguideService.cancelExcursion(this.excursion.id).subscribe();
+  }
+
 }

@@ -3,11 +3,15 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatListOption } from '@angular/material/list';
+import { Router } from '@angular/router';
 import { CreateCommentDTO } from 'src/app/entity/CreateCommentDTO';
 import { CreateExcursionDTO } from 'src/app/entity/CreateExcursionDTO';
 import { LocationDTO } from 'src/app/entity/LocationDTO';
 import { ExcursionService } from 'src/app/service/excursion.service';
+import { TourguideService } from 'src/app/service/tourguide.service';
 import { PopupComponent } from '../popup/popup.component';
+
+
 
 interface DisplayMessage {
   msgType: string;
@@ -31,7 +35,9 @@ export class CreateExcursionComponent implements OnInit {
 
   constructor(
     private excursionService: ExcursionService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private tourguideService: TourguideService
   ) { }
 
   ngOnInit(): void {
@@ -40,8 +46,8 @@ export class CreateExcursionComponent implements OnInit {
 
   createExcursion(){
     const createExcursionDTO = new CreateExcursionDTO(this.date, this.numOfPersons, this.price, this.selectedLocation[0]);
-    this.excursionService.createExcursion(createExcursionDTO).subscribe((created) => {
-      console.log("created: " + created);
+    this.tourguideService.createExcursion(createExcursionDTO).subscribe((created) => {
+      this.router.navigate(['']);
     },
     error => {
       this.dialog.open(PopupComponent);

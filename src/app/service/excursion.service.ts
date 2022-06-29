@@ -29,15 +29,4 @@ export class ExcursionService {
       return this.apiService.get('http://localhost:9080/api/excursion/locations');
     }
 
-    createExcursion(createExcursionDTO: CreateExcursionDTO):  Observable<boolean>{
-      return this.apiService.post('http://localhost:9080/api/tourguide/', JSON.stringify(createExcursionDTO));
-    }
-
-    getTourGuidePastExcursions(): Observable<PastExcursionDTO[]>{
-      return this.apiService.get('http://localhost:9080/api/tourguide/pastExcursions');
-    }
-
-    getExcursionsTourGuide(): Observable<ExcursionDTO[]>{
-      return this.apiService.get('http://localhost:9080/api/tourguide/excursions');
-    }
 }
