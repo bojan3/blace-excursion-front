@@ -3,7 +3,7 @@ import { PastExcursionDTO } from 'src/app/entity/PastExcursionDTO';
 import { ExcursionService } from 'src/app/service/excursion.service';
 import * as pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
-import { BoundDirectivePropertyAst, TmplAstTemplate } from '@angular/compiler';
+// import { BoundDirectivePropertyAst, TmplAstTemplate } from '@angular/compiler';
 import { TourguideService } from 'src/app/service/tourguide.service';
 (pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
 

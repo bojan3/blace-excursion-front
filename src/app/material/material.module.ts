@@ -10,6 +10,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatRadioModule} from '@angular/material/radio';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -22,7 +23,8 @@ const MaterialComponents = [
   MatDatepickerModule,
   MatNativeDateModule,
   MatDividerModule,
-  MatDialogModule
+  MatDialogModule,
+  MatRadioModule
 ]
 
 @NgModule({
@@ -37,7 +39,8 @@ const MaterialComponents = [
     MatDatepickerModule,
     MatNativeDateModule,
     MatDividerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatRadioModule
   ],
   exports: [
     MatButtonModule,
@@ -50,7 +53,8 @@ const MaterialComponents = [
     MatDatepickerModule,
     MatNativeDateModule,
     MatDividerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatRadioModule
   ]
 })
 export class MaterialModule { }

@@ -1,3 +1,19 @@
+<mat-card *ngIf="!forTourGuide" class="card">
+
+    <mat-radio-group class="radio-group" [(ngModel)]="sortType" (change)="getSorted()">
+      <mat-radio-button class="radio-button" *ngFor="let type of sortTypes" [value]="type">
+        {{type}}
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <mat-radio-group class="radio-group" [(ngModel)]="order" (change)="getSorted()">
+      <mat-radio-button class="radio-button" *ngFor="let order of orders" [value]="order">
+        {{order}}
+      </mat-radio-button>
+    </mat-radio-group>
+
+  </mat-card>
+
 <section class='excursions'>
   <app-excursion *ngFor="let excursion of excursions"
   [excursion]="excursion">

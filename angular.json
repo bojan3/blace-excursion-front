@@ -104,5 +104,7 @@
       }
     }
   },
-  "defaultProject": "blace-excursion"
+  "cli": {
+    "analytics": false
+  }
 }

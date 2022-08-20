@@ -1,4 +1,6 @@
+import { getSupportedInputTypes } from '@angular/cdk/platform';
 import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { ExcursionDTO } from 'src/app/entity/ExcursionDTO';
 import { ExcursionService } from 'src/app/service/excursion.service';
 import { TourguideService } from 'src/app/service/tourguide.service';
@@ -13,6 +15,10 @@ export class ExcursionsComponent implements OnInit {
   @Input()
   forTourGuide: boolean = false;
   excursions: ExcursionDTO[] = [];
+  sortTypes: string[] = ['date', 'maxNumberOfPersons', 'price'];
+  sortType!: string;
+  orders: string[] = ['asc', 'desc'];
+  order: string = 'asc';
 
   constructor(
     private excursionService: ExcursionService,
@@ -27,9 +33,15 @@ export class ExcursionsComponent implements OnInit {
     else{
     this.excursionService.getExcursions().subscribe((excursions) => {
       this.excursions = excursions;
-      console.log(excursions);
     }
       );
   }
+  }
+
+  getSorted(){
+    console.log(this.sortType)
+    console.log(this.order)
+    this.excursionService.getExcursions(this.sortType ,this.order).subscribe((excursions) => (
+      this.excursions = excursions ));
   }
 }

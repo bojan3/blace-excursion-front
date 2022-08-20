@@ -17,7 +17,9 @@ export class ExcursionService {
     private apiService: ApiService
     ) { }
 
-    getExcursions(): Observable<ExcursionDTO[]>{
+    getExcursions(type?: string, order?: string): Observable<ExcursionDTO[]>{
+      if (type && order)
+        return this.apiService.get('http://localhost:9080/api/excursion/', {type: type, order: order});
       return this.apiService.get('http://localhost:9080/api/excursion');
     }
 
@@ -25,7 +27,7 @@ export class ExcursionService {
       return this.apiService.get('http://localhost:9080/api/excursion/comments/' + excursionId);
     }
 
-    getLocations():  Observable<LocationDTO[]>{
+    getLocations(): Observable<LocationDTO[]>{
       return this.apiService.get('http://localhost:9080/api/excursion/locations');
     }
 

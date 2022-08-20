@@ -16,11 +16,8 @@ export class AuthService {
 
   constructor(
     private apiService: ApiService,
-    // private accountService: AccountService,
-    //private config: ConfigService,
     private userService: UserService,
-    private router: Router,
-    private http: HttpClient
+    private router: Router
   ) { }
 
   login(user: any) {
@@ -32,7 +29,6 @@ export class AuthService {
       'username': user.username,
       'password': user.password
     };
-    console.log(body);
 
     return this.apiService.post("http://localhost:9080/auth/login", JSON.stringify(body), loginHeaders)
       .pipe(map((res) => {

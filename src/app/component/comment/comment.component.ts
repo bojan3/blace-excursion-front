@@ -1,4 +1,4 @@
-import { CommentEndToken } from '@angular/compiler/src/ml_parser/tokens';
+// import { CommentEndToken } from '@angular/compiler/src/ml_parser/tokens';
 import { Component, Input, OnInit } from '@angular/core';
 import { CommentDTO } from 'src/app/entity/CommentDTO';
 

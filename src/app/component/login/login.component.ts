@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { AuthService, UserService } from 'src/app/service';
@@ -16,8 +16,8 @@ interface DisplayMessage {
 })
 export class LoginComponent implements OnInit {
   title = 'Login';
-  formLogin!: FormGroup;
-  formRegister!: FormGroup;
+  formLogin!: UntypedFormGroup;
+  formRegister!: UntypedFormGroup;
   submitted = false;
   notification!: DisplayMessage;
 
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: UntypedFormBuilder
   ) { }
 
   ngOnInit(): void {
