@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { CommentDTO } from '../entity/CommentDTO';
 import { CreateCommentDTO } from '../entity/CreateCommentDTO';
 import { CreateExcursionDTO } from '../entity/CreateExcursionDTO';
@@ -19,16 +20,16 @@ export class ExcursionService {
 
     getExcursions(type?: string, order?: string): Observable<ExcursionDTO[]>{
       if (type && order)
-        return this.apiService.get('http://localhost:9080/api/excursion/', {type: type, order: order});
-      return this.apiService.get('http://localhost:9080/api/excursion');
+        return this.apiService.get(environment.apiUrl + 'excursion/', {type: type, order: order});
+      return this.apiService.get(environment.apiUrl + 'excursion');
     }
 
     getComments(excursionId:number): Observable<CommentDTO[]>{
-      return this.apiService.get('http://localhost:9080/api/excursion/comments/' + excursionId);
+      return this.apiService.get(environment.apiUrl + 'excursion/comments/' + excursionId);
     }
 
     getLocations(): Observable<LocationDTO[]>{
-      return this.apiService.get('http://localhost:9080/api/excursion/locations');
+      return this.apiService.get(environment.apiUrl + 'excursion/locations');
     }
 
 }

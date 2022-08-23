@@ -39,8 +39,6 @@ export class ExcursionsComponent implements OnInit {
   }
 
   getSorted(){
-    console.log(this.sortType)
-    console.log(this.order)
     this.excursionService.getExcursions(this.sortType ,this.order).subscribe((excursions) => (
       this.excursions = excursions ));
   }

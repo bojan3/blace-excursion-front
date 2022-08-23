@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { ExcursionDTO } from '../entity/ExcursionDTO';
 import { PastExcursionDTO } from '../entity/PastExcursionDTO';
 import { PastExcursionKey } from '../entity/PastExcursionKey';
@@ -16,18 +17,18 @@ export class ClientService {
   ) { }
 
   getReservations(): Observable<ReservationDTO[]> {
-    return this.apiService.get('http://localhost:9080/api/client/reservation');
+    return this.apiService.get(environment.apiUrl + 'client/reservation');
   }
 
   cancelReservation(reservationId: PastExcursionKey){
-    return this.apiService.get('http://localhost:9080/api/client/reservation/cancel/' + reservationId.excursionId);
+    return this.apiService.get(environment.apiUrl + 'client/reservation/cancel/' + reservationId.excursionId);
   }
 
   getPastExcursions(): Observable<PastExcursionDTO[]>{
-    return this.apiService.get('http://localhost:9080/api/client/pastExcursion');
+    return this.apiService.get(environment.apiUrl + 'client/pastExcursion');
   }
 
   createReservation(excursionDTO: ExcursionDTO): Observable<boolean>{
-    return this.apiService.post('http://localhost:9080/api/client/createReservatin', JSON.stringify(excursionDTO));
+    return this.apiService.post(environment.apiUrl + 'client/createReservatin', JSON.stringify(excursionDTO));
   }
 }
