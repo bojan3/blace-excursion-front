@@ -1,0 +1,10 @@
+<mat-card class="card">
+    <mat-card-title-group>
+      <mat-card-title> {{tourguide.firstName}} {{tourguide.lastName}}</mat-card-title>
+      <mat-card-subtitle>{{tourguide.email}}</mat-card-subtitle>
+      <mat-card-subtitle>phone number: {{tourguide.phoneNumber}}</mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content>
+      <button (click)="deleteTourGuide()" class="right" color="primary" mat-raised-button>disable profile</button>
+    </mat-card-content>
+</mat-card>

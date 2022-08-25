@@ -1,0 +1,9 @@
+<mat-card class="card">
+    <mat-card-title-group>
+      <mat-card-title> {{vehicle.name}}</mat-card-title>
+      <mat-card-subtitle>capacity: {{vehicle.maxNumberOfPersons}}</mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content>
+      <button (click)="deleteVehicle()" *ngIf=vehicle.canDelete class="right" color="primary" mat-raised-button>delete</button>
+    </mat-card-content>
+</mat-card>

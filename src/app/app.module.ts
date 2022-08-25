@@ -24,6 +24,12 @@ import { CreateExcursionComponent } from './component/create-excursion/create-ex
 import { GenerateReportComponent } from './component/generate-report/generate-report.component';
 import { PopupComponent } from './component/popup/popup.component';
 import { TuorguidExcursionsComponent } from './component/tuorguid-excursions/tuorguid-excursions.component';
+import { LocationsComponent } from './component/locations/locations.component';
+import { LocationComponent } from './component/location/location.component';
+import { VehiclesComponent } from './component/vehicles/vehicles.component';
+import { VehicleComponent } from './component/vehicle/vehicle.component';
+import { TourguidesComponent } from './component/tourguides/tourguides.component';
+import { TourguideComponent } from './component/tourguide/tourguide.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomePageComponent },
@@ -33,7 +39,10 @@ const appRoutes: Routes = [
   { path: 'pastExcursions', component: PastExcursionsComponent},
   { path: 'createExcursion', component: CreateExcursionComponent},
   { path: 'generateReport', component: GenerateReportComponent},
-  { path: 'tuorguid-excursions', component: TuorguidExcursionsComponent}
+  { path: 'tuorguid-excursions', component: TuorguidExcursionsComponent},
+  { path: 'locations', component: LocationsComponent},
+  { path: 'vehicles', component: VehiclesComponent},
+  { path: 'tourguides', component: TourguidesComponent}
 ];
 
 @NgModule({
@@ -54,6 +63,12 @@ const appRoutes: Routes = [
     GenerateReportComponent,
     PopupComponent,
     TuorguidExcursionsComponent,
+    LocationsComponent,
+    LocationComponent,
+    VehiclesComponent,
+    VehicleComponent,
+    TourguidesComponent,
+    TourguideComponent,
   ],
   imports: [
     BrowserModule,

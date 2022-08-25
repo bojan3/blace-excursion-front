@@ -1,0 +1,10 @@
+<mat-card class="card">
+    <mat-card-title-group>
+      <mat-card-title> {{location.name}}</mat-card-title>
+      <mat-card-subtitle>{{location.description}}</mat-card-subtitle>
+      <img mat-card-lg-image src="https://material.angular.io/assets/img/examples/shiba1.jpg" >
+    </mat-card-title-group>
+    <mat-card-content>
+      <button (click)="deleteLocation()" *ngIf=location.canDelete class="right" color="primary" mat-raised-button>delete</button>
+    </mat-card-content>
+</mat-card>
