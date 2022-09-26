@@ -20,8 +20,8 @@ export class ClientService {
     return this.apiService.get(environment.apiUrl + 'client/reservation');
   }
 
-  cancelReservation(reservationId: PastExcursionKey){
-    return this.apiService.get(environment.apiUrl + 'client/reservation/cancel/' + reservationId.excursionId);
+  cancelReservation(reservationId: number){
+    return this.apiService.get(environment.apiUrl + 'client/reservation/cancel/' +  reservationId);
   }
 
   getPastExcursions(): Observable<PastExcursionDTO[]>{
@@ -29,6 +29,6 @@ export class ClientService {
   }
 
   createReservation(excursionDTO: ExcursionDTO): Observable<boolean>{
-    return this.apiService.post(environment.apiUrl + 'client/createReservatin', JSON.stringify(excursionDTO));
+    return this.apiService.post(environment.apiUrl + 'client/createReservation', JSON.stringify(excursionDTO));
   }
 }

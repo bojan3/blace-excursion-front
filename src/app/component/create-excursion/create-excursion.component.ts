@@ -1,6 +1,6 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatListOption } from '@angular/material/list';
 import { Router } from '@angular/router';
@@ -27,17 +27,18 @@ export class CreateExcursionComponent implements OnInit {
 
   locations: LocationDTO[] = [];
   date!: Date;
-  selectedLocation!: number[];
   selectedOptions!: SelectionModel<MatListOption>;
-  price!: number;
   numOfPersons!: number;
-  notification!: DisplayMessage | undefined;
+  locationIds: string[] = [];
+  message!: string;
+  showMessage = true;
 
   constructor(
     private excursionService: ExcursionService,
     public dialog: MatDialog,
     private router: Router,
-    private tourguideService: TourguideService
+    private tourguideService: TourguideService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -45,14 +46,27 @@ export class CreateExcursionComponent implements OnInit {
   }
 
   createExcursion(){
-    const createExcursionDTO = new CreateExcursionDTO(this.date, this.numOfPersons, this.price, this.selectedLocation[0]);
-    this.tourguideService.createExcursion(createExcursionDTO).subscribe((created) => {
-      this.router.navigate(['']);
-    },
-    error => {
-      this.dialog.open(PopupComponent);
-    }
+    const createExcursionDTO = new CreateExcursionDTO(this.date, this.numOfPersons, this.toNumber(this.locationIds));
+    console.log(createExcursionDTO);
+    this.tourguideService.createExcursion(createExcursionDTO).subscribe((message) => {
+      if(message.body.succes)
+        this.router.navigate(['']);
+      this.message = message.body.text;
+    });
+  }
 
-    );
+  toNumber(strings: string[]){
+    let numbers: number[] = [];
+    strings.forEach( (string) => numbers.push(Number(string)));
+    return numbers;
+  }
+
+
+  onChangeLocations($event: any){
+    if($event.checked)
+      this.locationIds.push($event.source.value)
+    else{
+      this.locationIds.forEach( (id, index) => id == $event.source.value ? this.locationIds.splice(index) : {} );
+    }
   }
 }

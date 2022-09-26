@@ -1,12 +1,12 @@
 <mat-card class="card">
   <mat-card-title-group>
-    <mat-card-title> {{pastExcursion.excursionDTO.locationDTO.name}}</mat-card-title>
-    <mat-card-subtitle>{{pastExcursion.excursionDTO.locationDTO.description}}</mat-card-subtitle>
-    <mat-card-subtitle>{{pastExcursion.excursionDTO.date}}</mat-card-subtitle>
+    <mat-card-title> {{pastExcursion.excursion.tourGuideName}}</mat-card-title>
+    <mat-card-subtitle *ngFor="let location of pastExcursion.excursion.locations">{{location.name}}</mat-card-subtitle>
+    <mat-card-subtitle>{{pastExcursion.excursion.date}}</mat-card-subtitle>
     <img mat-card-lg-image src="https://material.angular.io/assets/img/examples/shiba1.jpg" >
   </mat-card-title-group>
   <mat-card-content>
-    <p> {{pastExcursion.excursionDTO.tourGuideName}} </p>
+    <!-- <p> {{pastExcursion.excursionDTO.tourGuideName}} </p> -->
     <!-- <button class="right" color="primary" mat-raised-button
                     type="submit">Make reservation</button> -->
     <!-- <button [routerLink]="['', 'comments',pastExcursion. excursionDTO.id]" class="right" color="accent" mat-raised-button

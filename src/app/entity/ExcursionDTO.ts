@@ -8,7 +8,7 @@ export class ExcursionDTO{
   numberOfPerosns: number;
   price: number;
   tourGuideName: string;
-  locationDTO: LocationDTO;
+  locations: LocationDTO[];
 
   constructor(
     id: number,
@@ -17,7 +17,7 @@ export class ExcursionDTO{
     numberOfPerosns: number,
     price: number,
     tourGuideName: string,
-    locationDTO: LocationDTO
+    locations: LocationDTO[]
   ){
     this.id = id;
     this.date = date;
@@ -25,7 +25,7 @@ export class ExcursionDTO{
     this.numberOfPerosns = numberOfPerosns;
     this.price = price;
     this.tourGuideName = tourGuideName;
-    this.locationDTO = locationDTO;
+    this.locations = locations;
   }
 
 }

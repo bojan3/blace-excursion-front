@@ -36,10 +36,12 @@ export class GenerateReportComponent implements OnInit {
 
     body.push(['Location', 'Date', 'Price per person', 'Number of persons', 'Total per excursion']);
 
-    for (let pastExcursion of this.pastExcursions) {
-        body.push([pastExcursion.excursionDTO.locationDTO.name, pastExcursion.excursionDTO.date, pastExcursion.excursionDTO.price, pastExcursion.numberOfPersons, pastExcursion.excursionDTO.price * pastExcursion.numberOfPersons]);
-        total += pastExcursion.excursionDTO.price * pastExcursion.numberOfPersons;
-      }
+    //TREBA DA SE POPRAVI OVO 
+
+    // for (let pastExcursion of this.pastExcursions) {
+    //     body.push([pastExcursion.excursionDTO.locationDTO.name, pastExcursion.excursionDTO.date, pastExcursion.excursionDTO.price, pastExcursion.numberOfPersons, pastExcursion.excursionDTO.price * pastExcursion.numberOfPersons]);
+    //     total += pastExcursion.excursionDTO.price * pastExcursion.numberOfPersons;
+    //   }
 
         let table = { headerRows: 2, widths: ['auto', 'auto', 'auto', 'auto', 'auto'], body: body };
         content.push({table});

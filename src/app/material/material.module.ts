@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import {NgModule} from '@angular/core';
+import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatInputModule} from '@angular/material/input';
@@ -11,6 +11,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -24,7 +26,9 @@ const MaterialComponents = [
   MatNativeDateModule,
   MatDividerModule,
   MatDialogModule,
-  MatRadioModule
+  MatRadioModule,
+  MatSelectModule,
+  MatCheckboxModule
 ]
 
 @NgModule({
@@ -40,7 +44,9 @@ const MaterialComponents = [
     MatNativeDateModule,
     MatDividerModule,
     MatDialogModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSelectModule,
+    MatCheckboxModule
   ],
   exports: [
     MatButtonModule,
@@ -54,7 +60,9 @@ const MaterialComponents = [
     MatNativeDateModule,
     MatDividerModule,
     MatDialogModule,
-    MatRadioModule
+    MatRadioModule,
+    MatSelectModule,
+    MatCheckboxModule
   ]
 })
 export class MaterialModule { }

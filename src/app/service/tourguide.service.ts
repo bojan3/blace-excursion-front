@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { create } from 'domain';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { CreateExcursionDTO } from '../entity/CreateExcursionDTO';
@@ -15,7 +16,7 @@ export class TourguideService {
     private apiService: ApiService
   ) { }
 
-  createExcursion(createExcursionDTO: CreateExcursionDTO):  Observable<boolean>{
+  createExcursion(createExcursionDTO: CreateExcursionDTO):  Observable<any>{
     return this.apiService.post(environment.apiUrl + 'tourguide/', JSON.stringify(createExcursionDTO));
   }
 

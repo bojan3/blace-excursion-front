@@ -2,14 +2,12 @@ export class CreateExcursionDTO{
 
   date: Date;
   maxNumberOfPersons: number;
-  price: number;
-  locationId: number;
+  locationIds: number[];
 
-  constructor(date: Date, maxNumberOfPersons: number, price: number, locationId: number){
+  constructor(date: Date, maxNumberOfPersons: number, locationIds: number[]){
     this.date = date;
     this.maxNumberOfPersons = maxNumberOfPersons;
-    this.price = price;
-    this.locationId = locationId;
+    this.locationIds = locationIds;
   }
 
 }

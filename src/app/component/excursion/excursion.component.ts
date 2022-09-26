@@ -36,7 +36,9 @@ export class ExcursionComponent implements OnInit {
   }
 
   cancel(){
-    this.tourguideService.cancelExcursion(this.excursion.id).subscribe();
+    this.tourguideService.cancelExcursion(this.excursion.id).subscribe( ()  => {
+      window.location.reload();
+    });
   }
 
 }

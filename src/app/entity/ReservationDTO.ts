@@ -3,17 +3,18 @@ import { PastExcursionKey } from "./PastExcursionKey";
 
 export class ReservationDTO {
 
-  id: PastExcursionKey;
-  excursionDTO: ExcursionDTO;
+  // id: PastExcursionKey;
+  id: number;
+  excursion: ExcursionDTO;
   commentsCount: number;
 
   constructor(
-    id: PastExcursionKey,
-    excursionDTO: ExcursionDTO,
+    id: number,
+    excursion: ExcursionDTO,
     commentsCount: number
   ){
     this.id = id;
-    this.excursionDTO = excursionDTO;
+    this.excursion = excursion;
     this.commentsCount = commentsCount;
   }
 }
